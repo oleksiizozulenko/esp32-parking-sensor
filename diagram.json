@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "author": "Oleksii Zozulenko",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 19.2, "left": 24.04, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": -256.8,
+      "left": -17.4,
+      "attrs": { "volume": "0.1" }
+    },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -104.1,
+      "left": -205.7,
+      "attrs": { "distance": "362" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": -130.45,
+      "left": 144,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": 110.4,
+      "left": -115.75,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -243.6,
+      "left": 99.8,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 100.8,
+      "left": -86.95,
+      "rotate": 90,
+      "attrs": { "value": "2000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 282.35,
+      "left": 134.4,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 140.8,
+      "left": 274.4,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "led1:A", "r2:1", "green", [ "v0" ] ],
+    [ "ultrasonic1:ECHO", "r4:1", "green", [ "v0" ] ],
+    [ "esp:GND.2", "led1:C", "black", [ "v0" ] ],
+    [ "ultrasonic1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "ultrasonic1:GND", "esp:GND.2", "black", [ "v38.4", "h325.2" ] ],
+    [ "r1:1", "ultrasonic1:ECHO", "green", [ "h0" ] ],
+    [ "r1:2", "esp:GND.1", "green", [ "h28.8", "v37.2" ] ],
+    [ "bz1:1", "esp:GND.2", "black", [ "v134.4", "h115.2" ] ],
+    [ "r3:1", "esp:5V", "green", [ "v-19.2", "h-144" ] ],
+    [ "r3:2", "lcd1:VCC", "green", [ "v0" ] ],
+    [ "lcd1:GND", "esp:GND.2", "black", [ "h-28.8", "v-144" ] ],
+    [ "ultrasonic1:TRIG", "esp:32", "green", [ "v0" ] ],
+    [ "r4:2", "esp:33", "green", [ "h86.4", "v-30" ] ],
+    [ "lcd1:SCL", "esp:22", "green", [ "h-115.2", "v-134.1" ] ],
+    [ "lcd1:SDA", "esp:21", "green", [ "h-96", "v-95.8" ] ],
+    [ "r2:2", "esp:19", "green", [ "v0" ] ],
+    [ "bz1:2", "esp:18", "green", [ "v96", "h191.6", "v201.6" ] ]
+  ],
+  "dependencies": {}
+}
